@@ -70,9 +70,49 @@ export default function AboutPage() {
             </div>
 
             {/* Image Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <img src="/images/proj_1.png" alt="Landscaping work" className="rounded-3xl w-full h-64 object-cover shadow-lg" />
-              <img src="/images/proj_5.png" alt="Tree service work" className="rounded-3xl w-full h-64 object-cover shadow-lg mt-8" />
+            <div className="grid grid-cols-2 gap-4 h-full">
+              <img src="/images/proj_1.png" alt="Landscaping work" className="rounded-3xl w-full h-full object-cover shadow-lg min-h-[300px]" />
+              <img src="/images/proj_5.png" alt="Tree service work" className="rounded-3xl w-full h-full object-cover shadow-lg min-h-[300px]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* History & Sustainability Expansion */}
+      <section className="py-16 sm:py-24 bg-white border-t border-gray-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            {/* History */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-accent-100 text-accent-600 rounded-full flex items-center justify-center">
+                  <Icon name="clock" className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Our Local Roots</h3>
+              </div>
+              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                Born and raised in the heart of Riverside County, we didn't just build a business here—we built our lives here. We started with a single truck, a few tools, and a relentless commitment to doing honest work.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Today, we have grown into one of the most trusted names in Southern California landscaping and tree care. While our fleet and capabilities have expanded, our core promise remains exactly the same: <strong>treat every customer's yard as if it were our own.</strong>
+              </p>
+            </div>
+
+            {/* Sustainability */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-accent-100 text-accent-600 rounded-full flex items-center justify-center">
+                  <Icon name="leaf" className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Commitment to Sustainability</h3>
+              </div>
+              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                Living in Southern California means we must be stewards of our water and our environment. We specialize in <strong>drought-tolerant designs, native plant integration, and smart irrigation systems</strong> that drastically reduce water usage without sacrificing beauty.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Furthermore, our tree removal and pruning processes prioritize responsible green waste recycling. The wood and brush we clear are chipped and repurposed as nutrient-rich mulch, returning organic matter back to the earth instead of a landfill.
+              </p>
             </div>
 
           </div>

@@ -87,6 +87,36 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* What To Expect Expansion */}
+      <section className="py-16 bg-white border-t border-gray-200">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Happens After I Reach Out?</h2>
+            <p className="text-lg text-gray-600">We respect your time. Here is our straightforward process for getting your project started.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="p-6 bg-surface-50 rounded-2xl border border-gray-100">
+              <div className="w-12 h-12 bg-accent-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
+              <h4 className="font-bold text-gray-900 mb-2">Fast Response</h4>
+              <p className="text-gray-600 text-sm">We will review your request and call you back within 24 hours to discuss your needs.</p>
+            </div>
+            <div className="p-6 bg-surface-50 rounded-2xl border border-gray-100 relative">
+              <div className="hidden md:block absolute top-1/2 -left-4 w-8 h-0.5 bg-gray-200"></div>
+              <div className="w-12 h-12 bg-accent-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
+              <h4 className="font-bold text-gray-900 mb-2">Onsite Consultation</h4>
+              <p className="text-gray-600 text-sm">We visit your property for a free, no-pressure consultation to take exact measurements.</p>
+            </div>
+            <div className="p-6 bg-surface-50 rounded-2xl border border-gray-100 relative">
+              <div className="hidden md:block absolute top-1/2 -left-4 w-8 h-0.5 bg-gray-200"></div>
+              <div className="w-12 h-12 bg-accent-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">3</div>
+              <h4 className="font-bold text-gray-900 mb-2">Transparent Estimate</h4>
+              <p className="text-gray-600 text-sm">You receive a clear, upfront proposal with no hidden fees or surprise charges.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Map Section */}
       <div className="w-full h-[400px] lg:h-[500px] relative border-t border-gray-200">
         <iframe

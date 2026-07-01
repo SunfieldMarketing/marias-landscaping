@@ -4,6 +4,7 @@ import { services, getServiceBySlug } from "@/lib/services-data";
 import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
+import Process from "@/components/Process";
 
 export async function generateStaticParams() {
   return services.map((service) => ({

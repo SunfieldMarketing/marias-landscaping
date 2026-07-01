@@ -78,16 +78,26 @@ export default function ServicesPage() {
 
                   <div className="p-8 h-full flex flex-col justify-end relative z-10">
                     <div className="absolute top-8 left-8 w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-accent-300 rounded-2xl flex items-center justify-center group-hover:bg-accent-500 group-hover:text-white group-hover:border-accent-500 group-hover:scale-110 transition-all duration-500 shadow-xl">
-                      <Icon name={service.icon} className="w-7 h-7" />
+                      <Icon name={service.icon as any} className="w-7 h-7" />
                     </div>
                     
-                    <div>
+                    <div className="mt-auto">
                       <h4 className="text-2xl font-bold text-white mb-2 drop-shadow-md">
                         {service.title}
                       </h4>
                       <p className={`text-brand-100 text-sm leading-relaxed drop-shadow-sm font-medium ${isLarge ? 'line-clamp-3 mb-4' : 'line-clamp-2 mb-4'} opacity-80 group-hover:opacity-100 transition-opacity`}>
                         {service.shortDescription}
                       </p>
+
+                      {/* Injected Feature List Data */}
+                      <ul className="space-y-1 mb-6 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-32 transition-all duration-500 ease-in-out">
+                        {service.features.slice(0, 3).map((feature, fIdx) => (
+                          <li key={fIdx} className="flex items-center text-sm text-brand-200">
+                            <Icon name="check" className="w-4 h-4 text-accent-400 mr-2 flex-shrink-0" />
+                            <span className="line-clamp-1">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     
                     <div className="flex items-center text-accent-400 text-sm font-bold uppercase tracking-widest group-hover:text-accent-300 group-hover:translate-x-2 transition-all duration-300">
