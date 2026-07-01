@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Icon from "./Icon";
 
-export default function SlugFAQ({ faqs, serviceName }: { faqs: { q: string, a: string }[], serviceName: string }) {
+export default function SlugFAQ({ faqs, serviceName }: { faqs: { question: string, answer: string }[], serviceName: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   if (!faqs || faqs.length === 0) return null;
@@ -21,13 +21,13 @@ export default function SlugFAQ({ faqs, serviceName }: { faqs: { q: string, a: s
                 className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none"
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
               >
-                <span className={`font-bold text-lg ${openIndex === idx ? 'text-accent-700' : 'text-gray-900'}`}>{faq.q}</span>
+                <span className={`font-bold text-lg ${openIndex === idx ? 'text-accent-700' : 'text-gray-900'}`}>{faq.question}</span>
                 <span className={`flex-shrink-0 ml-4 transition-transform duration-300 ${openIndex === idx ? 'rotate-180 text-accent-600' : 'text-gray-400'}`}>
                   <Icon name="chevronDown" className="w-6 h-6" />
                 </span>
               </button>
               <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openIndex === idx ? 'max-h-[500px] pb-6 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <p className="text-gray-600 pt-2 border-t border-gray-200">{faq.a}</p>
+                <p className="text-gray-600 pt-2 border-t border-gray-200">{faq.answer}</p>
               </div>
             </div>
           ))}
