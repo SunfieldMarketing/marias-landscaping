@@ -8,7 +8,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1558904541-efa843a96f09?q=80&w=2000&auto=format&fit=crop"
+          src="/images/hero_bg.png"
           alt="Beautiful landscaping in Riverside County"
           className="h-full w-full object-cover object-center opacity-60"
         />

@@ -23,7 +23,7 @@ export default function ServicesPage() {
       <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gray-900 text-white border-b border-gray-800">
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=2000&auto=format&fit=crop"
+            src="/images/hero_bg.png"
             alt="Beautiful landscaping in Riverside County"
             className="h-full w-full object-cover object-center opacity-40"
           />

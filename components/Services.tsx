@@ -17,7 +17,7 @@ export default function Services() {
           <Link href="/services/tree-trimming-removal" className="group relative flex flex-col justify-end h-80 overflow-hidden bg-gray-900">
             <div className="absolute inset-0">
               <img
-                src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop"
+                src="/images/service_tree.png"
                 alt="Tree Service"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80"
               />
@@ -38,7 +38,7 @@ export default function Services() {
           <Link href="/services/landscaping-design-installation" className="group relative flex flex-col justify-end h-80 overflow-hidden bg-gray-900">
             <div className="absolute inset-0">
               <img
-                src="https://images.unsplash.com/photo-1558904541-efa843a96f09?q=80&w=800&auto=format&fit=crop"
+                src="/images/service_landscape.png"
                 alt="Landscaping"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80"
               />

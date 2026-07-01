@@ -81,7 +81,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <div className="absolute inset-0 overflow-hidden">
           {/* We use a generic image here, ideally it would be service specific, but keeping it simple */}
           <img
-            src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2000&auto=format&fit=crop"
+            src="/images/hero_bg.png"
             alt={service.title}
             className="h-full w-full object-cover object-center opacity-30"
           />
@@ -116,7 +116,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <div className="hidden lg:block">
               <div className="bg-white p-1 rounded-lg shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop"
+                  src="/images/service_tree.png"
                   alt={service.title}
                   className="w-full h-80 object-cover rounded"
                 />

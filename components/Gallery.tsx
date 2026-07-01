@@ -1,11 +1,11 @@
 export default function Gallery() {
   const projects = [
-    "https://images.unsplash.com/photo-1558904541-efa843a96f09?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1605810731174-839556843477?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1628148906969-95e542cc7d67?q=80&w=800&auto=format&fit=crop",
+    "/images/proj_1.png",
+    "/images/proj_2.png",
+    "/images/proj_3.png",
+    "/images/proj_4.png",
+    "/images/proj_5.png",
+    "/images/proj_6.png",
   ];
 
   return (

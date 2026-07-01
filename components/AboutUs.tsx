@@ -21,7 +21,7 @@ export default function AboutUs() {
           {/* Right Image */}
           <div className="relative h-96 lg:h-[500px] w-full">
             <img
-              src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=1000&auto=format&fit=crop"
+              src="/images/about_hedges.png"
               alt="Immaculate hedge and landscape maintenance"
               className="absolute inset-0 w-full h-full object-cover object-center shadow-lg"
             />
