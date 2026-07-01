@@ -1,30 +1,21 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
 import { site } from "@/lib/site-config";
 
-const display = Fraunces({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-body",
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Landscaping & Tree Service in Hemet, CA`,
+    default: `${site.name} | Landscaping & Tree Service in Riverside County`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -48,13 +39,13 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | Landscaping & Tree Service in Hemet, CA`,
+    title: `${site.name} | Landscaping & Tree Service`,
     description: site.description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Landscaping & Tree Service in Hemet, CA`,
+    title: `${site.name} | Landscaping & Tree Service`,
     description: site.description,
   },
   robots: {
@@ -128,12 +119,12 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-sans antialiased text-gray-700 bg-surface-50 flex flex-col min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -141,12 +132,12 @@ export default function RootLayout({
         {/* Skip to content */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-gold-500 focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-accent-600 focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
         >
           Skip to main content
         </a>
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <StickyMobileBar />
       </body>

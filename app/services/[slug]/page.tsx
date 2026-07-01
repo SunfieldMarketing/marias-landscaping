@@ -1,80 +1,73 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { services, getServiceBySlug } from "@/lib/services-data";
-import { serviceAreaCities, site } from "@/lib/site-config";
+import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
-import Reveal from "@/components/Reveal";
 
-export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+export async function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const service = getServiceBySlug(params.slug);
-  if (!service) return {};
+  if (!service) return { title: "Service Not Found" };
+
+  const url = `${site.url}/services/${service.slug}`;
+
   return {
-    title: service.title,
-    description: service.metaDescription,
-    alternates: { canonical: `/services/${service.slug}` },
-    keywords: [
-      `${service.title.toLowerCase()} Hemet CA`,
-      `${service.title.toLowerCase()} Riverside County`,
-      `${service.title.toLowerCase()} San Jacinto`,
-      `${service.title.toLowerCase()} Menifee`,
-      site.name,
-    ],
+    title: `${service.title} in ${site.county}, CA`,
+    description: `${service.shortDescription} Professional ${service.title.toLowerCase()} by ${site.name}. Free estimates — (442) 281-0394.`,
+    alternates: { canonical: url },
     openGraph: {
       title: `${service.title} | ${site.name}`,
-      description: service.metaDescription,
-      url: `${site.url}/services/${service.slug}`,
-      type: "website",
+      description: service.shortDescription,
+      url,
     },
   };
 }
 
-export default function ServiceDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
   const service = getServiceBySlug(params.slug);
-  if (!service) notFound();
-
-  const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  
+  if (!service) {
+    notFound();
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: service.title,
-    name: `${service.title} | ${site.name}`,
-    description: service.metaDescription,
+    "@type": ["Service", "FAQPage"],
+    "@id": `${site.url}/services/${service.slug}#service`,
+    name: service.title,
     provider: {
       "@type": "LocalBusiness",
       name: site.name,
+      image: `${site.url}/favicon.svg`,
       telephone: site.phone,
-      url: site.url,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: site.addressLocality,
+        addressRegion: site.addressRegion,
+      },
     },
-    areaServed: serviceAreaCities.map((c) => ({
-      "@type": "City",
-      name: c.name,
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: site.county,
+    },
+    description: service.shortDescription,
+    mainEntity: service.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
     })),
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: service.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer },
-    })),
-  };
+  const otherServices = services.filter((s) => s.slug !== service.slug).slice(0, 4);
 
   return (
     <>
@@ -82,267 +75,123 @@ export default function ServiceDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-
-      {/* ── Hero ───────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden hero-mesh py-14 text-white sm:py-20">
-        <div className="absolute inset-0 dot-grid pointer-events-none" />
-        <div className="pointer-events-none absolute -right-20 top-10 h-64 w-64 rounded-full bg-gold-500/10 blur-3xl" />
-
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="text-xs text-ink-300">
-            <Link href="/" className="hover:text-white transition">Home</Link>
-            {" / "}
-            <Link href="/services" className="hover:text-white transition">Services</Link>
-            {" / "}
-            <span className="text-white font-semibold">{service.title}</span>
-          </nav>
-
-          {/* Icon + Headline */}
-          <div className="mt-5 flex items-center gap-4">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-white ring-2 ring-white/20">
-              <Icon name={service.icon} className="h-7 w-7" />
-            </span>
-            <h1 className="font-display text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-              {service.title}
-            </h1>
-          </div>
-
-          {/* Hero points */}
-          <ul className="mt-6 flex flex-wrap gap-3">
-            {service.heroPoints.map((p) => (
-              <li
-                key={p}
-                className="flex items-center gap-2 rounded-full glass border border-white/15 px-4 py-2 text-sm font-medium"
-              >
-                <Icon name="check" className="h-4 w-4 text-gold-300" />
-                {p}
-              </li>
-            ))}
-          </ul>
-
-          {/* CTAs */}
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={site.phoneHref}
-              className="shimmer-btn inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-gold-glow transition hover:bg-gold-400"
-            >
-              <Icon name="phone" className="h-4 w-4" />
-              Call {site.phone}
-            </a>
-            <a
-              href="#estimate"
-              className="inline-flex items-center justify-center gap-2 rounded-full glass border border-white/30 px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/15"
-            >
-              <Icon name="clipboard" className="h-4 w-4" />
-              Get Free Estimate
-            </a>
-          </div>
-
-          {/* Trust row */}
-          <div className="mt-6 flex flex-wrap gap-2">
-            {["Licensed & Insured", "Free Written Estimates", "Bilingual English/Spanish"].map((b) => (
-              <span key={b} className="trust-badge">
-                <Icon name="check" className="h-3 w-3 text-gold-300" />
-                {b}
-              </span>
-            ))}
-          </div>
+      
+      {/* Hero */}
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white">
+        <div className="absolute inset-0 overflow-hidden">
+          {/* We use a generic image here, ideally it would be service specific, but keeping it simple */}
+          <img
+            src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2000&auto=format&fit=crop"
+            alt={service.title}
+            className="h-full w-full object-cover object-center opacity-30"
+          />
+          <div className="absolute inset-0 bg-brand-900/70" />
         </div>
-      </section>
-
-      {/* ── Main Content ───────────────────────────────────────────── */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
-
-          {/* Left: Service details */}
-          <div className="lg:col-span-3">
-            {/* Description */}
-            <div className="space-y-4">
-              {service.description.map((p, i) => (
-                <p key={i} className="text-base leading-relaxed text-ink-700">{p}</p>
-              ))}
-            </div>
-
-            {/* What's Included */}
-            <Reveal className="mt-12">
-              <h2 className="font-display text-2xl font-bold text-ink-900">What&apos;s Included</h2>
-              <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {service.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-3 rounded-2xl border border-ink-100 bg-ink-50/40 px-4 py-3 text-sm text-ink-700"
-                  >
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage-100 mt-0.5">
-                      <Icon name="check" className="h-3.5 w-3.5 text-sage-600" />
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            {/* Why Choose Maria's for this service */}
-            <Reveal className="mt-12">
-              <div className="rounded-3xl border border-gold-200 bg-gold-50 p-6">
-                <h2 className="font-display text-xl font-bold text-ink-900">
-                  Why Choose Maria&apos;s for {service.title}?
-                </h2>
-                <ul className="mt-4 space-y-3">
-                  {[
-                    "Licensed & fully insured on every job",
-                    "Bilingual English & Spanish crew",
-                    "Free, written, no-pressure estimates",
-                    "Fast scheduling — often same week",
-                    "Full debris cleanup included",
-                    "Serving Riverside County since 2012",
-                  ].map((point) => (
-                    <li key={point} className="flex items-center gap-2 text-sm text-ink-700">
-                      <Icon name="check" className="h-4 w-4 shrink-0 text-gold-600" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={site.phoneHref}
-                  className="shimmer-btn mt-5 inline-flex items-center gap-2 rounded-full bg-gold-500 px-6 py-2.5 text-sm font-bold text-white hover:bg-gold-600 transition"
-                >
-                  <Icon name="phone" className="h-4 w-4" />
+        
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+            <div className="max-w-2xl">
+              <Link href="/services" className="inline-flex items-center text-sm font-semibold text-brand-300 hover:text-white transition-colors mb-6">
+                <Icon name="arrow" className="mr-2 h-4 w-4 rotate-180" />
+                All Services
+              </Link>
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-600 mb-6">
+                <Icon name={service.icon} className="h-8 w-8 text-white" />
+              </div>
+              <h1 className="text-4xl font-bold sm:text-5xl lg:text-6xl mb-6">
+                {service.title}
+              </h1>
+              <p className="text-lg text-brand-100 mb-8 leading-relaxed">
+                {service.shortDescription}
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-4">
+                <a href={site.phoneHref} className="btn-primary">
+                  <Icon name="phone" className="h-4 w-4 mr-2" />
                   Call {site.phone}
                 </a>
               </div>
-            </Reveal>
+            </div>
+            
+            <div className="hidden lg:block">
+              <div className="bg-white p-1 rounded-lg shadow-xl">
+                <img
+                  src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop"
+                  alt={service.title}
+                  className="w-full h-80 object-cover rounded"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* FAQs */}
-            {service.faqs.length > 0 && (
-              <Reveal className="mt-12">
-                <h2 className="font-display text-2xl font-bold text-ink-900">
-                  {service.title} FAQs
-                </h2>
-                <div className="mt-5 space-y-4">
-                  {service.faqs.map((f) => (
-                    <div
-                      key={f.question}
-                      className="rounded-2xl border border-ink-100 bg-white p-5 shadow-elevation-1"
-                    >
-                      <h3 className="flex items-start gap-2 font-display text-base font-semibold text-ink-900">
-                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-100 text-[10px] font-bold text-gold-700 mt-0.5">Q</span>
-                        {f.question}
-                      </h3>
-                      <p className="mt-3 pl-7 text-sm leading-relaxed text-ink-600">{f.answer}</p>
+      <section className="bg-surface-50 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
+            
+            {/* Main Content */}
+            <div className="lg:col-span-8">
+              <div className="bg-white rounded p-8 sm:p-10 shadow-sm border border-gray-100 mb-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Service Overview</h2>
+                <div className="space-y-4 text-gray-600 leading-relaxed text-lg">
+                  {service.description.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">What&apos;s Included</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-start bg-white p-4 rounded border border-gray-100 shadow-sm">
+                      <Icon name="check" className="h-5 w-5 text-accent-600 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {service.faqs.map((faq, i) => (
+                    <div key={i} className="bg-white p-6 rounded border border-gray-100 shadow-sm">
+                      <h3 className="font-bold text-gray-900 mb-2">{faq.question}</h3>
+                      <p className="text-gray-600">{faq.answer}</p>
                     </div>
                   ))}
                 </div>
-              </Reveal>
-            )}
-
-            {/* Service area */}
-            <Reveal className="mt-12">
-              <h2 className="font-display text-2xl font-bold text-ink-900">
-                {service.title} Service Area
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-ink-600">
-                We provide {service.title.toLowerCase()} throughout{" "}
-                {serviceAreaCities
-                  .slice(0, 10)
-                  .map((c) => c.name)
-                  .join(", ")}
-                , and the rest of {site.county}.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {serviceAreaCities.map((c) => (
-                  <span
-                    key={c.name}
-                    className="rounded-full border border-ink-100 bg-ink-50 px-3 py-1 text-xs font-medium text-ink-600"
-                  >
-                    {c.name} ({c.zips[0]})
-                  </span>
-                ))}
               </div>
-            </Reveal>
-          </div>
+            </div>
 
-          {/* Right: Sticky lead form */}
-          <div className="lg:col-span-2" id="estimate">
-            <Reveal>
-              <div className="lg:sticky lg:top-24">
-                <LeadForm
-                  title={`Free ${service.title} Estimate`}
-                  subtitle="Fast response from our local team."
-                  defaultService={service.title}
-                />
-                {/* Trust below form */}
-                <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                  {["Licensed & Insured", "No Obligation", "Fast Response"].map((b) => (
-                    <span key={b} className="trust-badge-dark">
-                      <Icon name="check" className="h-3 w-3 text-sage-600" />
-                      {b}
-                    </span>
-                  ))}
+            {/* Sidebar */}
+            <div className="lg:col-span-4 space-y-8">
+              <div className="sticky top-24">
+                <LeadForm />
+                
+                <div className="mt-8 bg-brand-50 p-6 rounded border border-brand-100">
+                  <h3 className="font-bold text-gray-900 mb-4">Other Services</h3>
+                  <ul className="space-y-3">
+                    {otherServices.map((s) => (
+                      <li key={s.slug}>
+                        <Link href={`/services/${s.slug}`} className="group flex items-center text-gray-700 hover:text-accent-600 transition-colors">
+                          <Icon name="arrow" className="h-4 w-4 mr-2 text-brand-300 group-hover:text-accent-600" />
+                          <span className="font-medium">{s.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 pt-4 border-t border-brand-200">
+                    <Link href="/services" className="text-sm font-bold text-accent-600 hover:text-accent-700">
+                      View all services &rarr;
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* ── Final CTA band ─────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-ink-800 to-ink-700 py-14 text-white">
-        <div className="absolute inset-0 dot-grid pointer-events-none" />
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl font-extrabold sm:text-4xl">
-            Ready to Get Started?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-ink-200">
-            Call now or fill out the form above for a free, no-obligation estimate on your{" "}
-            {service.title.toLowerCase()} project in {site.county}.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <a
-              href={site.phoneHref}
-              className="shimmer-btn inline-flex items-center gap-2 rounded-full bg-gold-500 px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-gold-glow hover:bg-gold-400 transition"
-            >
-              <Icon name="phone" className="h-4 w-4" />
-              Call {site.phone}
-            </a>
-            <a
-              href={site.smsHref}
-              className="inline-flex items-center gap-2 rounded-full glass border border-white/30 px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white hover:bg-white/15 transition"
-            >
-              <Icon name="sms" className="h-4 w-4" />
-              Text Us Now
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Related Services ───────────────────────────────────────── */}
-      <section className="bg-ink-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-2xl font-bold text-ink-900">Related Services</h2>
-          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {related.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/services/${s.slug}`}
-                className="group flex flex-col rounded-3xl border border-ink-100 bg-white p-6 shadow-elevation-1 card-hover glow-gold"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-ink-600 to-ink-800 text-white transition-transform duration-300 group-hover:scale-110 group-hover:from-gold-500 group-hover:to-gold-700">
-                  <Icon name={s.icon} className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 font-display text-base font-bold text-ink-900 group-hover:text-gold-700 transition-colors">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-600">{s.shortDescription}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 group-hover:gap-2 transition-all">
-                  Learn more <Icon name="arrow" className="h-4 w-4" />
-                </span>
-              </Link>
-            ))}
           </div>
         </div>
       </section>

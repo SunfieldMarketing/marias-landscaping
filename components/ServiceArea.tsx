@@ -1,124 +1,78 @@
-"use client";
-
-import { useState } from "react";
-import { serviceAreaCities, site } from "@/lib/site-config";
 import Icon from "./Icon";
-import Reveal from "./Reveal";
+import { site } from "@/lib/site-config";
 
 export default function ServiceArea() {
-  const [search, setSearch] = useState("");
+  const cities = [
+    "Hemet", "San Jacinto", "Menifee", "Winchester", 
+    "Homeland", "Idyllwild", "Perris", "Sun City",
+    "Murrieta", "Temecula", "Lake Elsinore", "Beaumont",
+    "Banning", "Moreno Valley", "Rancho Bernardo", "North Park San Diego"
+  ];
 
-  const filtered = serviceAreaCities.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.zips.some((z) => z.includes(search))
-  );
-
-  const mapQuery = encodeURIComponent(
-    `Riverside County, CA`
-  );
+  const zips = [
+    "92543, 92544, 92545",
+    "92581, 92582, 92583",
+    "92584, 92585, 92586",
+    "92596",
+    "92548",
+    "92570",
+    "92562",
+    "92590"
+  ];
 
   return (
-    <section id="service-area" className="bg-ink-50 py-16 sm:py-24" aria-label="Service Area">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="kicker">
-            <span className="divider-dot" />
-            Service Area
-          </span>
-          <h2 className="mt-3 section-title">
-            Proudly Serving All of {site.county}
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-ink-600">
-            Based in {site.addressLocality}, CA, we serve homeowners and businesses
-            throughout Riverside County — from Hemet to Temecula and everywhere in between.
-          </p>
-        </Reveal>
-
-        {/* Coverage badge */}
-        <Reveal delay={80} className="mt-6 flex justify-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-sage-200 bg-sage-50 px-5 py-2.5 shadow-sm">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-500 text-white">
-              <Icon name="map" className="h-4 w-4" />
-            </span>
-            <span className="text-sm font-bold text-sage-800">
-              35-mile service radius · {serviceAreaCities.length} cities covered
-            </span>
-          </div>
-        </Reveal>
-
-        {/* Map + City list */}
-        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-5">
-          {/* Map */}
-          <Reveal className="lg:col-span-3" direction="left">
-            <div className="h-[380px] w-full overflow-hidden rounded-4xl border border-ink-200 shadow-elevation-2 sm:h-[480px]">
-              <iframe
-                title={`${site.name} service area map — Riverside County, CA`}
-                src={`https://maps.google.com/maps?q=${mapQuery}&z=9&output=embed`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                aria-label="Interactive map showing Riverside County service area"
-              />
-            </div>
-          </Reveal>
-
-          {/* City list */}
-          <Reveal delay={100} className="lg:col-span-2" direction="right">
-            <div className="h-full rounded-4xl border border-ink-200 bg-white p-6 shadow-elevation-1">
-              <h3 className="flex items-center gap-2 font-display text-lg font-bold text-ink-900">
-                <Icon name="pin" className="h-5 w-5 text-gold-500" />
-                Cities &amp; Zip Codes We Serve
-              </h3>
-
-              {/* Search filter */}
-              <div className="relative mt-4">
-                <Icon name="pin" className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
-                <input
-                  type="text"
-                  placeholder="Search city or zip code…"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full rounded-xl border border-ink-200 bg-ink-50 py-2.5 pl-9 pr-4 text-sm text-ink-900 placeholder:text-ink-400 focus:border-gold-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-100"
-                  aria-label="Filter cities by name or zip code"
-                />
+    <section className="bg-surface-100 section-padding">
+      <div className="container-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left: Text & Lists */}
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Proudly Serving Southern California</h2>
+            <p className="text-lg text-gray-600 mb-10">
+              We bring our expert landscaping and tree services to a wide range of communities across the region.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {/* Cities */}
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Cities We Serve</h3>
+                <ul className="space-y-2">
+                  {cities.slice(0, 8).map((city) => (
+                    <li key={city} className="flex items-center text-gray-600">
+                      <Icon name="mapPin" className="h-4 w-4 text-accent-600 mr-2 flex-shrink-0" />
+                      {city}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              {/* City grid */}
-              <ul className="mt-4 max-h-[320px] space-y-0 overflow-y-auto scrollbar-hide">
-                {filtered.length === 0 ? (
-                  <li className="py-6 text-center text-sm text-ink-500">
-                    No cities found. <a href="tel:+14422810394" className="font-semibold text-gold-600 hover:underline">Call us</a> — we may still serve you!
-                  </li>
-                ) : (
-                  filtered.map((city) => (
-                    <li
-                      key={city.name}
-                      className="flex items-center justify-between border-b border-ink-50 py-2.5 last:border-0"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-sage-400" />
-                        <span className="text-sm font-semibold text-ink-900">{city.name}</span>
-                      </div>
-                      <span className="rounded-full bg-ink-50 px-2 py-0.5 text-[11px] font-medium text-ink-500">
-                        {city.zips.join(", ")}
-                      </span>
+              {/* Zip Codes */}
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Zip Codes</h3>
+                <ul className="space-y-2">
+                  {zips.map((zip) => (
+                    <li key={zip} className="text-gray-600">
+                      {zip}
                     </li>
-                  ))
-                )}
-              </ul>
-
-              <p className="mt-4 rounded-xl bg-gold-50 p-3 text-xs leading-relaxed text-gold-800">
-                <strong>Don&apos;t see your city?</strong> Call us at{" "}
-                <a href="tel:+14422810394" className="font-bold underline hover:text-gold-600">
-                  {site.phone}
-                </a>{" "}
-                — we likely still serve your area.
-              </p>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </Reveal>
+          </div>
+
+          {/* Right: Map */}
+          <div className="bg-gray-200 w-full h-[400px] lg:h-full min-h-[400px] relative overflow-hidden flex items-center justify-center border border-gray-300">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105994.49841804246!2d-117.0607611!3d33.7475147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6e3bf29c8ab1%3A0x6b8bc2ec96216895!2sHemet%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 grayscale opacity-90"
+              title="Service Area Map"
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -1,58 +1,52 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "@/lib/site-config";
 import Icon from "./Icon";
+import { site } from "@/lib/site-config";
 
 export default function StickyMobileBar() {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 320);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      // Show after scrolling down 300px
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (!isVisible) return null;
+
   return (
-    <div
-      className={`fixed inset-x-0 bottom-0 z-50 flex border-t border-ink-900/10 bg-white shadow-[0_-4px_24px_rgba(0,0,0,0.12)] lg:hidden transition-transform duration-300 ${
-        visible ? "translate-y-0" : "translate-y-full"
-      }`}
-    >
-      {/* Text Now */}
-      <a
-        href={site.smsHref}
-        id="mobile-text-btn"
-        aria-label="Text us now"
-        className="flex flex-1 flex-col items-center justify-center gap-0.5 border-r border-ink-900/10 bg-ink-50 py-3 text-ink-800 hover:bg-ink-100 transition-colors"
-      >
-        <Icon name="sms" className="h-5 w-5" />
-        <span className="text-[10px] font-bold uppercase tracking-wider">Text Now</span>
-      </a>
-
-      {/* Estimate CTA */}
-      <a
-        href="#contact"
-        id="mobile-estimate-btn"
-        aria-label="Get a free estimate"
-        className="flex flex-1 flex-col items-center justify-center gap-0.5 bg-ink-700 py-3 text-white hover:bg-ink-800 transition-colors"
-      >
-        <Icon name="clipboard" className="h-5 w-5" />
-        <span className="text-[10px] font-bold uppercase tracking-wider">Free Quote</span>
-      </a>
-
-      {/* Call Now */}
+    <div className="fixed bottom-0 left-0 right-0 z-[100] flex lg:hidden bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
       <a
         href={site.phoneHref}
-        id="mobile-call-btn"
-        aria-label="Call us now"
-        className="relative flex flex-1 flex-col items-center justify-center gap-0.5 bg-gold-500 py-3 text-white hover:bg-gold-600 transition-colors"
-        style={{ animation: "pulseRing 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
+        className="flex-1 flex flex-col items-center justify-center py-2.5 text-gray-700 hover:bg-gray-50 transition-colors"
       >
-        <span className="absolute left-4 top-3 h-2.5 w-2.5 rounded-full bg-white/70 animate-ping" />
-        <Icon name="phone" className="h-5 w-5" />
-        <span className="text-[10px] font-bold uppercase tracking-wider">Call Now</span>
+        <Icon name="phone" className="h-5 w-5 mb-1" />
+        <span className="text-[10px] font-bold uppercase tracking-wide">Call Now</span>
+      </a>
+      
+      <a
+        href={`sms:${site.phone.replace(/[^0-9]/g, "")}`}
+        className="flex-1 flex flex-col items-center justify-center py-2.5 text-gray-700 hover:bg-gray-50 transition-colors border-l border-gray-200"
+      >
+        <Icon name="chat" className="h-5 w-5 mb-1" />
+        <span className="text-[10px] font-bold uppercase tracking-wide">Text Us</span>
+      </a>
+      
+      <a
+        href="#contact"
+        className="flex-[1.5] flex flex-col items-center justify-center py-2.5 bg-accent-600 text-white hover:bg-accent-700 transition-colors"
+      >
+        <Icon name="check" className="h-5 w-5 mb-1" />
+        <span className="text-[10px] font-bold uppercase tracking-wide">Get Free Quote</span>
       </a>
     </div>
   );
