@@ -69,7 +69,7 @@ export default function ServiceArea() {
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 grayscale opacity-90"
+              className="absolute inset-0"
               title="Service Area Map"
             />
           </div>

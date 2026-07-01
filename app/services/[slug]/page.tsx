@@ -80,7 +80,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src="/images/hero_bg.png"
+            src={service.image}
             alt={service.title}
             className="h-full w-full object-cover object-center"
           />

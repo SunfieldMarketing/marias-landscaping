@@ -22,10 +22,6 @@ export default function Services() {
             const isLarge = index === 0 || index === 3;
             const colSpan = isLarge ? 'md:col-span-2 xl:col-span-2' : 'col-span-1';
             
-            // Assign background images (cycling through our available images)
-            const bgImageIndex = (index % 6) + 1;
-            const bgImage = `/images/proj_${bgImageIndex}.png`;
-
             return (
               <Link 
                 key={service.slug}
@@ -35,7 +31,7 @@ export default function Services() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                   <img 
-                    src={bgImage} 
+                    src={service.image} 
                     alt={service.title} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />

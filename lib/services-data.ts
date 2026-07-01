@@ -4,6 +4,7 @@ export type Service = {
   shortDescription: string;
   metaDescription: string;
   icon: string;
+  image: string; // Hardcoded visual background
   heroPoints: string[];
   description: string[];
   features: string[];
@@ -19,6 +20,7 @@ export const services: Service[] = [
     metaDescription:
       "Professional tree trimming and tree removal in Hemet, San Jacinto, Menifee & Riverside County. Licensed crews, free estimates, safe equipment. Call (442) 281-0394.",
     icon: "tree",
+    image: "/images/proj_1.png",
     heroPoints: [
       "Certified, insured tree crews",
       "Emergency & storm-damage removal",
@@ -62,6 +64,7 @@ export const services: Service[] = [
     metaDescription:
       "Custom landscaping design & installation in Riverside County. Drought-tolerant designs, planting, and full yard transformations. Free estimates — (442) 281-0394.",
     icon: "leaf",
+    image: "/images/proj_2.png",
     heroPoints: [
       "Custom designs for any budget",
       "Drought-tolerant, low-water plant palettes",
@@ -100,6 +103,7 @@ export const services: Service[] = [
     metaDescription:
       "Weekly & bi-weekly lawn care and maintenance in Hemet, Menifee, San Jacinto & Riverside County. Mowing, edging, fertilization. Call (442) 281-0394.",
     icon: "grass",
+    image: "/images/proj_3.png",
     heroPoints: [
       "Weekly, bi-weekly & monthly plans",
       "Mowing, edging, and blowing",
@@ -138,6 +142,7 @@ export const services: Service[] = [
     metaDescription:
       "Yard cleanup, brush clearing, and debris removal in Riverside County. Seasonal & one-time cleanups. Fast, reliable service — (442) 281-0394.",
     icon: "broom",
+    image: "/images/proj_4.png",
     heroPoints: [
       "One-time or seasonal cleanups",
       "Brush & overgrowth clearing",
@@ -170,6 +175,7 @@ export const services: Service[] = [
     metaDescription:
       "Sod installation and artificial turf installation in Riverside County. Fresh, even lawns installed right. Free estimates — (442) 281-0394.",
     icon: "sod",
+    image: "/images/proj_5.png",
     heroPoints: [
       "Fresh sod & synthetic turf",
       "Soil prep & grading included",
@@ -201,6 +207,7 @@ export const services: Service[] = [
     metaDescription:
       "Irrigation and sprinkler system installation & repair in Riverside County. Drip irrigation, timers, and repairs. Call (442) 281-0394.",
     icon: "drop",
+    image: "/images/proj_6.png",
     heroPoints: [
       "New sprinkler system installation",
       "Drip irrigation for beds & plants",
@@ -232,6 +239,7 @@ export const services: Service[] = [
     metaDescription:
       "Hardscaping, paver patios, walkways, and retaining walls in Riverside County. Custom outdoor living spaces. Free estimates — (442) 281-0394.",
     icon: "brick",
+    image: "/images/proj_1.png",
     heroPoints: [
       "Paver patios & walkways",
       "Retaining walls & borders",
@@ -263,6 +271,7 @@ export const services: Service[] = [
     metaDescription:
       "Stump grinding services in Hemet, Menifee, San Jacinto & Riverside County. Reclaim your yard space. Call (442) 281-0394 for a free estimate.",
     icon: "stump",
+    image: "/images/proj_2.png",
     heroPoints: [
       "Grinding for stumps of any size",
       "Reclaim usable yard space",
@@ -293,6 +302,7 @@ export const services: Service[] = [
     metaDescription:
       "Palm tree trimming and skinning services across Riverside County. Safe, clean results for all palm varieties. Call (442) 281-0394.",
     icon: "palm",
+    image: "/images/proj_3.png",
     heroPoints: [
       "All palm varieties",
       "Skinning & full trimming",
@@ -323,6 +333,7 @@ export const services: Service[] = [
     metaDescription:
       "Mulch installation and soil amendment services in Riverside County. Protect plants and improve soil health. Free estimates — (442) 281-0394.",
     icon: "mulch",
+    image: "/images/proj_4.png",
     heroPoints: [
       "Bark, rock & mulch installation",
       "Soil amendment & conditioning",

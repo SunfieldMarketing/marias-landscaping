@@ -33,17 +33,43 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex lg:gap-x-8 items-center">
-          <Link href="/services" className="text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors">
-            Services
+          
+          {/* Services Dropdown */}
+          <div className="relative group">
+            <Link href="/services" className="flex items-center text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors py-4">
+              Services
+              <Icon name="chevronDown" className="ml-1 w-4 h-4 text-gray-400 group-hover:text-accent-600 transition-transform group-hover:rotate-180" />
+            </Link>
+            
+            {/* Dropdown Menu */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-screen max-w-md bg-white rounded-2xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
+              <div className="p-4 grid grid-cols-2 gap-x-2 gap-y-1">
+                {services.map(service => (
+                  <Link 
+                    key={service.slug} 
+                    href={`/services/${service.slug}`}
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-50 transition-colors group/link"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-accent-50 flex items-center justify-center text-accent-600 group-hover/link:bg-accent-500 group-hover/link:text-white transition-colors">
+                      <Icon name={service.icon} className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 line-clamp-1">{service.title}</span>
+                  </Link>
+                ))}
+              </div>
+              <div className="bg-surface-50 p-4 border-t border-gray-100 text-center">
+                <Link href="/services" className="text-sm font-bold text-accent-600 hover:text-accent-700">
+                  View All Services &rarr;
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <Link href="/about" className="text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors">
+            About Us
           </Link>
-          <Link href="/#gallery" className="text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors">
-            Portfolio
-          </Link>
-          <Link href="/#reviews" className="text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors">
-            Reviews
-          </Link>
-          <Link href="/#about" className="text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors">
-            About
+          <Link href="/contact" className="text-sm font-semibold text-gray-700 hover:text-accent-600 transition-colors">
+            Contact
           </Link>
         </nav>
 
@@ -74,35 +100,46 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg px-4 pt-4 pb-6 space-y-4 z-40">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg px-4 pt-4 pb-6 space-y-4 z-40 max-h-[80vh] overflow-y-auto">
+          
+          <div className="border-b border-gray-100 pb-2 mb-2">
+            <Link
+              href="/services"
+              className="block w-full text-left font-bold text-gray-900 py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Services (View All)
+            </Link>
+            <div className="pl-4 border-l-2 border-brand-100 space-y-2 mt-2">
+              {services.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="block text-sm text-gray-600 hover:text-accent-600 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <Link
-            href="/services"
+            href="/about"
             className="block w-full text-left font-semibold text-gray-900 py-2 border-b border-gray-100"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Services
+            About Us
           </Link>
+          
           <Link
-            href="/#gallery"
+            href="/contact"
             className="block w-full text-left font-semibold text-gray-900 py-2 border-b border-gray-100"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Portfolio
+            Contact
           </Link>
-          <Link
-            href="/#reviews"
-            className="block w-full text-left font-semibold text-gray-900 py-2 border-b border-gray-100"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Reviews
-          </Link>
-          <Link
-            href="/#about"
-            className="block w-full text-left font-semibold text-gray-900 py-2 border-b border-gray-100"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            About
-          </Link>
+
           <a
             href={site.phoneHref}
             className="mt-4 flex w-full items-center justify-center rounded bg-accent-600 px-4 py-3 text-sm font-semibold text-white shadow-sm"
