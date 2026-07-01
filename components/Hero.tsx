@@ -4,7 +4,7 @@ import LeadForm from "./LeadForm";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-gray-900 text-white overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 bg-gray-900 text-white overflow-hidden">
       {/* Background Image & Slate Overlay */}
       <div className="absolute inset-0 z-0">
         <img

@@ -5,6 +5,8 @@ import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
 import Process from "@/components/Process";
+import SlugFAQ from "@/components/SlugFAQ";
+import Testimonials from "@/components/Testimonials";
 
 export async function generateStaticParams() {
   return services.map((service) => ({
@@ -163,7 +165,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     </div>
                   ))}
                 </div>
+                <Process />
               </div>
+
+              {/* Massive Expansion Elements */}
+              <SlugFAQ faqs={service.faqs || []} serviceName={service.title} />
+              <Testimonials />
             </div>
 
             {/* Sidebar */}

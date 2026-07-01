@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
+import CoreValues from "@/components/CoreValues";
+import Testimonials from "@/components/Testimonials";
+import Contact from "@/components/Contact";
+import Process from "@/components/Process";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -12,7 +16,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
+      <section className="relative h-[80vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src="/images/about_bg.png"
@@ -118,6 +122,12 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Massive Expansion Elements */}
+      <CoreValues />
+      <Process />
+      <Testimonials />
+      <Contact />
     </>
   );
 }

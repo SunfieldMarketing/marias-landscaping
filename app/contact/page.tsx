@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
 import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
+import ServiceArea from "@/components/ServiceArea";
+import HomeFAQ from "@/components/HomeFAQ";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -13,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
+      <section className="relative min-h-[60vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-brand-950 opacity-95" />
           <div className="absolute inset-0 bg-gradient-to-br from-brand-900/50 to-accent-900/20 mix-blend-overlay" />
@@ -131,6 +132,8 @@ export default function ContactPage() {
           title="Service Area Map"
         />
       </div>
+      <ServiceArea />
+      <HomeFAQ />
     </>
   );
 }

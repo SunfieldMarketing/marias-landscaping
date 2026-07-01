@@ -2,32 +2,41 @@ import Link from 'next/link';
 
 export default function AboutUs() {
   return (
-    <section id="about" className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 sm:py-28 bg-accent-900 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-accent-950/50 mix-blend-multiply"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
           
           {/* Left Text content */}
           <div className="mb-12 lg:mb-0 relative z-10 lg:-mr-12">
-            <div className="bg-white/90 backdrop-blur-xl p-8 sm:p-10 rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 relative">
-              <h2 className="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3 flex items-center gap-2">
-                <span className="w-8 h-px bg-brand-600"></span>
+            <div className="bg-white/10 backdrop-blur-xl p-8 sm:p-10 rounded-3xl shadow-2xl border border-white/10 relative">
+              <h2 className="text-accent-300 font-semibold tracking-wide uppercase text-sm mb-3 flex items-center gap-2">
+                <span className="w-8 h-px bg-accent-300"></span>
                 About Maria's Landscaping
               </h2>
-              <h3 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
-                Over 10 years of dedication to transforming properties across <span className="text-brand-600">Riverside County</span>
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 leading-tight">
+                Over 10 years of dedication to transforming properties across <span className="text-accent-300">Riverside County</span>
               </h3>
               
-              <div className="space-y-4 text-gray-600 text-lg leading-relaxed mb-8">
+              <div className="space-y-4 text-accent-100 text-lg leading-relaxed mb-8">
                 <p>
-                  Maria's Landscaping brings both technical arboriculture expertise and an artist's eye to every residential and commercial project. 
+                  At Maria's Landscaping, we believe your outdoor space should be a beautiful, functional extension of your home. For over a decade, our dedicated teams have worked across Riverside County to bring expert landscaping, reliable tree services, and stunning hardscape designs to life.
                 </p>
                 <p>
-                  We are fully licensed and insured, ensuring that every job, whether it's delicate Magnolia tree pruning or a complete yard overhaul, is executed with the highest standards of safety and professionalism. 
+                  We pride ourselves on our core values: <strong>Integrity, Craftsmanship, and Reliability</strong>. When you hire us, you get a team that shows up on time, respects your property, and delivers results that last.
                 </p>
-                <p className="font-medium text-gray-900 border-l-4 border-brand-500 pl-4 italic">
-                  "Our bilingual English-Spanish team takes pride in clear communication, reliability, and our unwavering commitment to our local community."
-                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="flex flex-col">
+                  <span className="text-4xl font-bold text-accent-300 mb-1">15+</span>
+                  <span className="text-sm font-semibold text-accent-200 uppercase tracking-wider">Years Exp</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-4xl font-bold text-accent-300 mb-1">500+</span>
+                  <span className="text-sm font-semibold text-accent-200 uppercase tracking-wider">Projects</span>
+                </div>
               </div>
               
               <Link href="/#contact" className="btn-secondary group">

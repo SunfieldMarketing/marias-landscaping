@@ -4,6 +4,10 @@ import { services } from "@/lib/services-data";
 import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
+import Process from "@/components/Process";
+import Testimonials from "@/components/Testimonials";
+import HomeFAQ from "@/components/HomeFAQ";
+import Contact from "@/components/Contact";
 
 export const metadata: Metadata = {
   title: "Landscaping & Tree Services",
@@ -20,7 +24,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
+      <section className="relative min-h-[60vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src="/images/hero_bg.png"
@@ -154,6 +158,12 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Massive Expansion Elements */}
+      <Process />
+      <Testimonials />
+      <HomeFAQ />
+      <Contact />
     </>
   );
 }

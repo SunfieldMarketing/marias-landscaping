@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import Stats from "@/components/Stats";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
 import AboutUs from "@/components/AboutUs";
@@ -15,12 +14,11 @@ export default function Home() {
     <>
       <Hero />
       <SocialProof />
-      <Stats />
-      <Process />
       <Services />
       <AboutUs />
       <WhyChooseUs />
       <ServiceArea />
+      <Process />
       <Testimonials />
       <HomeFAQ />
       <Contact />
