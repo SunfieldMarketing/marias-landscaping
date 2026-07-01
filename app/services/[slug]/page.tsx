@@ -77,31 +77,30 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       />
       
       {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white">
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gray-900 text-white">
         <div className="absolute inset-0 overflow-hidden">
-          {/* We use a generic image here, ideally it would be service specific, but keeping it simple */}
           <img
             src="/images/hero_bg.png"
             alt={service.title}
-            className="h-full w-full object-cover object-center opacity-30"
+            className="h-full w-full object-cover object-center opacity-50"
           />
-          <div className="absolute inset-0 bg-brand-900/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/90 to-gray-900/70 backdrop-blur-sm" />
         </div>
         
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
             <div className="max-w-2xl">
-              <Link href="/services" className="inline-flex items-center text-sm font-semibold text-brand-300 hover:text-white transition-colors mb-6">
+              <Link href="/services" className="inline-flex items-center text-sm font-semibold text-brand-300 hover:text-white transition-colors mb-6 drop-shadow-md">
                 <Icon name="arrow" className="mr-2 h-4 w-4 rotate-180" />
                 All Services
               </Link>
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-600 mb-6">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-600 mb-6 shadow-xl">
                 <Icon name={service.icon} className="h-8 w-8 text-white" />
               </div>
-              <h1 className="text-4xl font-bold sm:text-5xl lg:text-6xl mb-6">
+              <h1 className="text-4xl font-extrabold sm:text-5xl lg:text-6xl mb-6 text-white drop-shadow-lg">
                 {service.title}
               </h1>
-              <p className="text-lg text-brand-100 mb-8 leading-relaxed">
+              <p className="text-lg text-gray-200 mb-8 leading-relaxed drop-shadow-md">
                 {service.shortDescription}
               </p>
               

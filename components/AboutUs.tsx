@@ -40,8 +40,8 @@ export default function AboutUs() {
           {/* Right Image (Overlaps left text slightly on desktop) */}
           <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl group">
             <img
-              src="/images/about_hedges.png"
-              alt="Immaculate hedge and landscape maintenance"
+              src="/images/team_maintenance.png"
+              alt="Professional landscaping team working on property maintenance"
               className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>

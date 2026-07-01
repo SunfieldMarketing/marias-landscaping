@@ -25,15 +25,15 @@ export default function ServicesPage() {
           <img
             src="/images/hero_bg.png"
             alt="Beautiful landscaping in Riverside County"
-            className="h-full w-full object-cover object-center opacity-40"
+            className="h-full w-full object-cover object-center opacity-50"
           />
-          <div className="absolute inset-0 bg-gray-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/90 to-gray-900/70 backdrop-blur-sm" />
         </div>
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="mt-4 text-4xl font-bold sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-extrabold sm:text-5xl text-white drop-shadow-lg">
             Landscaping &amp; Tree Service Solutions
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-gray-300">
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-gray-200 drop-shadow-md">
             Full-service landscaping and tree care for homeowners across{" "}
             {site.county}. Explore each service below or call for a free estimate.
           </p>
