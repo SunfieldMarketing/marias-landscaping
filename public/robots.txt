@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.marialandscapingtreeservice.com/sitemap.xml
+
+# AI / LLM discovery file
+# https://www.marialandscapingtreeservice.com/llms.txt
