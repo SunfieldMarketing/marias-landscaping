@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { site } from "@/lib/site-config";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
