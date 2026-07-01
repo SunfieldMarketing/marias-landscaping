@@ -1,39 +1,27 @@
-"use client";
-
-import Icon from "./Icon";
-import { site } from "@/lib/site-config";
-
-const proofs = [
-  { icon: "check", text: "Licensed & Insured" },
-  { icon: "star", text: "5-Star Rated Service" },
-  { icon: "phone", text: "Free Written Estimates" },
-  { icon: "users", text: "Bilingual English & Spanish" },
-];
-
 export default function SocialProof() {
-  return (
-    <div className="bg-white border-b border-gray-100 py-6">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-between">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-gray-900">Over 10 Years</span>
-            <span className="text-gray-500">Serving Riverside County</span>
-          </div>
-          
-          <div className="hidden md:block w-px h-6 bg-gray-200" />
+  const badges = [
+    { text: "Licensed & Insured", icon: "✓" },
+    { text: "Over 10 Years Experience", icon: "⭐" },
+    { text: "Free Estimates", icon: "✓" },
+    { text: "Bilingual Service", icon: "🗣️" },
+    { text: "Top Rated on Yelp", icon: "⭐" },
+    { text: "Riverside County Locals", icon: "📍" },
+  ];
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            {proofs.map((proof, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100">
-                  <Icon name={proof.icon as any} className="h-3.5 w-3.5 text-brand-700" />
-                </div>
-                <span className="text-sm font-semibold text-gray-700">{proof.text}</span>
-              </div>
-            ))}
+  return (
+    <section className="bg-brand-900 border-y border-brand-800 py-4 overflow-hidden relative">
+      <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-brand-900 to-transparent"></div>
+      <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-brand-900 to-transparent"></div>
+      
+      <div className="flex w-max animate-[marquee_25s_linear_infinite] hover:animate-[marquee_25s_linear_infinite_paused]">
+        {/* Double the array for seamless infinite loop */}
+        {[...badges, ...badges, ...badges].map((badge, index) => (
+          <div key={index} className="flex items-center space-x-2 mx-8 text-brand-100 whitespace-nowrap">
+            <span className="text-accent-400 font-bold">{badge.icon}</span>
+            <span className="font-semibold text-sm sm:text-base tracking-wide">{badge.text}</span>
           </div>
-        </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }

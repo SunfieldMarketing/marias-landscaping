@@ -1,63 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <loc>https://mariaslandscaping.com/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/tree-trimming-removal</loc>
-    <lastmod>2026-07-01</lastmod>
+    <loc>https://mariaslandscaping.com/services</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/landscaping-design-installation</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/tree-trimming-removal</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/lawn-care-maintenance</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/landscaping-design-installation</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/yard-cleanup</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/lawn-care-maintenance</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/sod-turf-installation</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/stump-grinding</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/irrigation-systems</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/hardscaping-patios</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/hardscaping-pavers</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/irrigation-sprinklers</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/stump-grinding</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/sod-installation</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/palm-tree-trimming</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/drought-tolerant-landscaping</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.marialandscapingtreeservice.com/services/mulching-soil</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mariaslandscaping.com/services/mulch-rock-installation</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mariaslandscaping.com/services/yard-cleanups</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
