@@ -8,6 +8,7 @@ import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
 import HomeFAQ from "@/components/HomeFAQ";
 import Contact from "@/components/Contact";
+import TrustBar from "@/components/TrustBar";
 
 export const metadata: Metadata = {
   title: "Landscaping & Tree Services",
@@ -52,6 +53,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <TrustBar />
 
       {/* Services grid (Visual Bento) */}
       <section className="bg-surface-100 py-16 sm:py-24">

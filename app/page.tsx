@@ -8,11 +8,13 @@ import ServiceArea from "@/components/ServiceArea";
 import Testimonials from "@/components/Testimonials";
 import HomeFAQ from "@/components/HomeFAQ";
 import Contact from "@/components/Contact";
+import TrustBar from "@/components/TrustBar";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <TrustBar />
       <SocialProof />
       <Services />
       <AboutUs />

@@ -5,6 +5,7 @@ import CoreValues from "@/components/CoreValues";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Process from "@/components/Process";
+import TrustBar from "@/components/TrustBar";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -34,6 +35,8 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+
+      <TrustBar />
 
       {/* Main Content */}
       <section className="bg-surface-50 py-16 sm:py-24">

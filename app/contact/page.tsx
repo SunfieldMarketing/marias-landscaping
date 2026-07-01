@@ -4,6 +4,7 @@ import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
 import ServiceArea from "@/components/ServiceArea";
 import HomeFAQ from "@/components/HomeFAQ";
+import TrustBar from "@/components/TrustBar";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -29,6 +30,8 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+
+      <TrustBar />
 
       {/* Main Content */}
       <section className="bg-surface-50 py-16 sm:py-24">
