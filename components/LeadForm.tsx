@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { services } from '@/lib/services-data';
 
-export default function LeadForm({ title = "Request a Free Estimate", subtitle = "", theme = "light" }: { title?: string, subtitle?: string, theme?: "light" | "dark" }) {
+export default function LeadForm({ title = "Request a Free Estimate", subtitle = "Genuine service & authentic free onsite estimates.", theme = "light" }: { title?: string, subtitle?: string, theme?: "light" | "dark" }) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -14,25 +14,24 @@ export default function LeadForm({ title = "Request a Free Estimate", subtitle =
     }, 1200);
   };
 
-  const isDark = theme === "dark";
-
-  // Magic UI inspired input classes
-  const inputClass = isDark
-    ? "block w-full rounded-lg border border-white/10 bg-white/5 py-3 px-4 text-white placeholder-gray-400 focus:border-brand-400 focus:bg-white/10 focus:ring-1 focus:ring-brand-400 transition-all shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)]"
-    : "block w-full rounded-lg border border-gray-200 bg-gray-50 py-3 px-4 text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:bg-white focus:ring-1 focus:ring-brand-500 transition-all shadow-sm";
+  // We are forcing the inputs to be white with dark text, regardless of the outer theme,
+  // to maximize contrast and perfectly match the lead-capture optimized reference design.
+  const inputClass = "block w-full rounded-md border border-gray-200 bg-white py-3.5 px-4 text-gray-900 placeholder-gray-400 focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 transition-all shadow-sm font-medium";
 
   return (
     <div className="w-full">
-      <div className="mb-6">
-        <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'} mb-2`}>{title}</h3>
-        {subtitle && <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{subtitle}</p>}
+      <div className="mb-6 hidden">
+        {/* We can hide these if the surrounding component already provides the title, 
+            or keep them if not. Based on the reference, the title is usually outside the form block. */}
       </div>
 
       {status === 'success' ? (
-        <div className={`p-6 rounded-lg text-center ${isDark ? 'bg-brand-500/20 border border-brand-400/30' : 'bg-green-50 border border-green-200'}`}>
-          <svg className={`w-12 h-12 mx-auto mb-3 ${isDark ? 'text-brand-400' : 'text-brand-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-          <h4 className={`text-lg font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>Request Sent!</h4>
-          <p className={`text-sm ${isDark ? 'text-gray-200' : 'text-gray-600'}`}>We'll be in touch shortly.</p>
+        <div className="p-6 rounded-xl text-center bg-white border border-accent-200 shadow-xl">
+          <div className="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+          </div>
+          <h4 className="text-xl font-bold mb-2 text-gray-900">Request Sent Successfully!</h4>
+          <p className="text-gray-600">We will be in touch with you shortly to schedule your free estimate.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -46,27 +45,27 @@ export default function LeadForm({ title = "Request a Free Estimate", subtitle =
             <input type="tel" id="phone" name="phone" required placeholder="Phone Number" className={inputClass} />
           </div>
           <div className="relative">
-            <select id="service" name="service" required className={`${inputClass} appearance-none ${isDark ? '[&>option]:bg-gray-900 [&>option]:text-white' : ''}`} defaultValue="">
+            <select id="service" name="service" required className={`${inputClass} appearance-none`} defaultValue="">
               <option value="" disabled>Select a Service...</option>
               {services.map((s) => (
                 <option key={s.slug} value={s.title}>{s.title}</option>
               ))}
               <option value="other">Other / Not Sure</option>
             </select>
-            <div className={`pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </div>
           </div>
           
           <button
             type="submit"
             disabled={status === 'submitting'}
-            className="w-full btn-primary py-3.5 relative overflow-hidden group mt-2 rounded-lg"
+            className="w-full bg-accent-600 hover:bg-accent-700 text-white py-4 px-6 rounded-md font-bold tracking-wide transition-all shadow-lg hover:shadow-xl mt-2 flex items-center justify-center gap-2"
           >
-            <span className="relative z-10 font-bold tracking-wide">
-              {status === 'submitting' ? 'Submitting...' : 'Get My Free Estimate'}
-            </span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+            {status === 'submitting' ? (
+              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            ) : null}
+            <span>{status === 'submitting' ? 'Submitting...' : 'Get My Free Estimate'}</span>
           </button>
         </form>
       )}

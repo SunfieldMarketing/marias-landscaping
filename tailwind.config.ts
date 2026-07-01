@@ -10,28 +10,34 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d', 
-          800: '#166534',
-          900: '#14532d', // Deepest green (footer/sections)
-          950: '#052e16',
+          50: '#f8fafc',  // slate-50
+          100: '#f1f5f9', // slate-100
+          200: '#e2e8f0', // slate-200
+          300: '#cbd5e1', // slate-300
+          400: '#94a3b8', // slate-400
+          500: '#64748b', // slate-500
+          600: '#475569', // slate-600
+          700: '#334155', // slate-700
+          800: '#1e293b', // slate-800
+          900: '#0f172a', // Deep Slate
+          950: '#020617', // slate-950
         },
         accent: {
-          400: '#34d399',
-          500: '#059669', // Emerald for buttons
-          600: '#047857',
-          700: '#065f46',
+          50: '#ecfdf5',  // emerald-50
+          100: '#d1fae5', // emerald-100
+          200: '#a7f3d0', // emerald-200
+          300: '#6ee7b7', // emerald-300
+          400: '#34d399', // emerald-400
+          500: '#10b981', // Vibrant Emerald (Primary CTA)
+          600: '#059669', // emerald-600
+          700: '#047857', // emerald-700
+          800: '#065f46', // emerald-800
+          900: '#064e3b', // emerald-900
         },
         surface: {
-          50: '#f8f9fa',
-          100: '#f1f3f5',
-          200: '#e9ecef',
+          50: '#ffffff',
+          100: '#f8fafc',
+          200: '#f1f5f9',
         }
       },
       fontFamily: {

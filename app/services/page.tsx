@@ -20,14 +20,14 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gray-900 text-white border-b border-gray-800">
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src="/images/hero_bg.png"
             alt="Beautiful landscaping in Riverside County"
-            className="h-full w-full object-cover object-center opacity-50"
+            className="h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/90 to-gray-900/70 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/90 to-brand-900/70 backdrop-blur-sm opacity-95" />
         </div>
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="mt-4 text-4xl font-extrabold sm:text-5xl text-white drop-shadow-lg">
@@ -83,17 +83,44 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Lead form */}
-      <section id="estimate" className="bg-brand-900 py-16 sm:py-20 text-white">
-        <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Not Sure Which Service You Need?
-          </h2>
-          <p className="text-brand-100 mb-8">
-            Tell us about your project and we&apos;ll help you figure out exactly what your yard needs — no pressure.
-          </p>
-          <div className="text-left text-gray-900">
-            <LeadForm />
+      {/* Lead form section (Perfect match for reference image) */}
+      <section id="estimate" className="bg-brand-900 py-16 sm:py-24 text-white border-t border-brand-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            
+            {/* Left side: Copy and CTA */}
+            <div>
+              <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight text-white drop-shadow-md">
+                Ready to Transform Your Landscape?
+              </h2>
+              <p className="text-brand-300 text-lg sm:text-xl mb-10 leading-relaxed max-w-lg drop-shadow-sm">
+                Genuine service & authentic free onsite estimates. Let's create the outdoor space you've always dreamed of.
+              </p>
+              
+              <div className="flex items-center gap-4 bg-brand-800/50 p-6 rounded-2xl border border-brand-700/50 max-w-md backdrop-blur-sm">
+                <div className="w-12 h-12 bg-accent-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent-600/20">
+                  <Icon name="phone" className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm text-brand-300 font-medium">Call us directly</p>
+                  <a href={site.phoneHref} className="text-2xl font-bold text-white hover:text-accent-400 transition-colors">
+                    {site.phone}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side: Lead Form */}
+            <div className="w-full max-w-lg mx-auto lg:mx-0 relative">
+              {/* Subtle background glow */}
+              <div className="absolute -inset-4 bg-accent-500/10 rounded-[3rem] blur-2xl"></div>
+              
+              <div className="relative">
+                <h3 className="text-xl font-bold text-white mb-6">Request a Free Estimate</h3>
+                <LeadForm />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

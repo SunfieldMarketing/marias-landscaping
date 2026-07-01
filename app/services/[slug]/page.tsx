@@ -77,14 +77,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       />
       
       {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gray-900 text-white">
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-brand-900 text-white border-b border-brand-800">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src="/images/hero_bg.png"
             alt={service.title}
-            className="h-full w-full object-cover object-center opacity-50"
+            className="h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/90 to-gray-900/70 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/90 to-brand-900/70 backdrop-blur-sm opacity-95" />
         </div>
         
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
